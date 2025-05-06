@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imgreen</title>
+    <style>
+    
+    @font-face {
+    	src: url(./system.ttf);
+    }
+    
+    body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: url(lamy.img)no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    /*user-select: none;*/
+}
+
+eval {
+	position: fixed;
+	right: 5px;
+	color: white;
+}
+
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+    border-radius: 20px 20px 0 0;
+}
+
+#start-button {
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#start-button img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+#app-icons {
+    display: flex;
+    align-items: center;
+}
+
+.app-icon {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.app-icon:hover {
+    transform: scale(1.2);
+}
+
+.time {
+    color: white;
+    font-size: 16px;
+    user-select: none;
+}
+
+#start-menu {
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+    width: 250px;
+    /*background-color: white;*/
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    z-index: 10;
+#start-menu {
+    transition: opacity 0.3s ease;
+}
+}
+
+.menu-header {
+    padding: 10px;
+    backdrop-filter: blur(80px) brightness(0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius:10px 10px 0 0;
+}
+
+.menu-content {
+    padding: 10px;
+}
+
+.menu-item {
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 10px;
+}
+
+.menu-item:hover {
+    background-color: #BCCFFF;
+}
+
+.hidden {
+    display: none;
+}
+
+.t1 {
+	bottom: 80px;
+}
+	
+.t2 {
+	bottom: 60px;
+}
+
+.b {
+	color: black;
+}
+.docktime {
+	position: relative;
+	right: 10px;
+}
+.dockstart {
+	position: relative;
+	left: 10px;
+}
+
+    </style>
+</head>
+<body>
+	
+	<eval class="t1">Imgreen OS 5</eval>
+	<eval class="t2">Imgreen OS based on Flare Version 210603.5799 "Color Rise Harmony"</eval>
+	
+    <div id="taskbar">
+    	<div class="dockstart">
+        <div id="start-button" onclick="toggleMenu()">Start</div>
+        </div>
+        <div id="app-icons">
+            <div class="app-icon">1</div>
+            <div class="app-icon">2</div>
+            <div class="app-icon">3</div>
+            <div class="app-icon">4</div>
+        </div>
+        <div class="docktime">
+        <div id="time" class="time"></div>
+        </div>
+        <div id="start-menu" class="hidden">
+            <div class="menu-header">
+                <h2>Start</h2>
+                <button onclick="toggleMenu()">Close</button>
+            </div>
+            <div class="menu-content">
+                <div class="menu-item">App Store</div>
+                <div class="menu-item">Browser</div>
+                <div class="menu-item">File Explorer</div>
+                <div class="menu-item">Calendar</div>
+                <div class="menu-item">Videos</div>
+                <div class="menu-item">Musics</div>
+                <div class="menu-item">Calculator</div>
+                <div class="menu-item">Clocks</div>
+                <div class="menu-item">Disks</div>
+                <div class="menu-item">Settings</div>
+                <div class="menu-item">Partition Manager</div>
+                <div class="menu-item">Text Editor</div>
+                <div class="menu-item">Terminal</div>
+                <div class="menu-item">System Monitor</div>
+                <hr>
+                <div class="menu-item">Execute</div>
+                <hr>
+                <div class="menu-item">Lock screen</div>
+                <div class="menu-item">Sign out</div>
+                <div class="menu-item"><a href="./Shutdown.html" class="b">Shut down</a></div>
+                <div class="menu-item"><a href="./Restart.html" class="b">Restart</a></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+    const menu = document.getElementById('start-menu');
+    menu.classList.toggle('hidden');
+}
+
+function updateTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('time').textContent = `${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')} ${hours}:${minutes}:${seconds}`;
+}
+
+setInterval(updateTime, 100);
+updateTime();
+    </script>
+</body>
+</html>
